@@ -15,7 +15,6 @@
         .background {
             width: 100vw; 
             height: 100vh; 
-            background-image: url('background-menu.png'); 
             background-size: cover;
             background-position: center;
             border-radius: 30px;
@@ -24,6 +23,27 @@
     </style>
 </head>
 <body>
-    <div class="background"></div>
+    <div class="background" id="background"></div>
+
+    <script>
+        // Função para pegar o valor do parâmetro 'imagem' na URL
+        function getImageFromURL() {
+            const urlParams = new URLSearchParams(window.location.search); 
+            const imagem1 = urlParams.get('imagem1');  // Verifica o parâmetro 'imagem1'
+            
+            // Se imagem1 for 'imagem1', usa background-menu.png, caso contrário, usa lista-admin.png
+            return imagem1 === 'imagem1' ? 'background-menu.png' : 'lista-admin.png';
+        }
+
+        // Função para aplicar a imagem de fundo
+        function setBackgroundImage() {
+            const imageName = getImageFromURL();  // Pega o nome da imagem com base na URL
+            const backgroundDiv = document.getElementById('background');
+            backgroundDiv.style.backgroundImage = `url('${imageName}')`;  // Aplica a imagem no background
+        }
+
+        // Aplica a imagem de fundo ao carregar a página
+        window.onload = setBackgroundImage;
+    </script>
 </body>
 </html>
